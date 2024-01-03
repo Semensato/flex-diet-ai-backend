@@ -13,7 +13,7 @@ namespace FlexDietAiDAL.Repositories
     /// <summary>
     /// User repository to access database.
     /// </summary>
-    public class RepositoryUser : IRepository<User>
+    public class RepositoryUser : IUser
     {
         FlexDietAiDbContext _dbContext;
 
@@ -56,6 +56,13 @@ namespace FlexDietAiDAL.Repositories
         public async Task<User?> GetByIdAsync(int Id)
         {
             var user = await _dbContext.Users.FindAsync(Id);
+            return user;
+        }
+
+        public async Task<User?> GetByLoginAsync(string email, string password)
+        {
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.Email == email && u.BashPassword == password);
             return user;
         }
     }
