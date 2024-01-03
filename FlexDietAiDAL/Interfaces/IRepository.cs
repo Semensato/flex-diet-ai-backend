@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace FlexDietAiDAL.Interfaces
 {
+    /// <summary>
+    /// Generical repository interface.
+    /// </summary>
     public interface IRepository<T>
     {
-        public Task<T> Create(T _object);
-        public void Delete (T _object);
-        public void Update (T _object);
-        public IEnumerable<T> GetAll ();
-        public T GetById(int id);
+        public Task<T> CreateAsync(T _object);
+        public Task<T> DeleteAsync(T _object);
+        public Task<T> UpdateAsync(int Id, T _object);
+        public Task<IEnumerable<T>> GetAllAsync();
+        public Task<T?> GetByIdAsync(int Id);
     }
 }
