@@ -23,9 +23,9 @@ namespace FlexDietAiDAL.Models
         public UserData? UserData { get; set; }
 
         // UserHealth FK.
-        public ICollection<UserHealth> UserHealth { get; set; }
+        public ICollection<UserHealth>? UserHealth { get; set; }
 
         // UserDiet FK.
-        public ICollection<UserDiet> UserDiet { get; set; }
+        public ICollection<UserDiet>? UserDiet { get; set; }
     }
 }

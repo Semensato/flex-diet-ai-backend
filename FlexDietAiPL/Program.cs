@@ -1,4 +1,8 @@
+using FlexDietAiBAL.Services;
 using FlexDietAiDAL.Data;
+using FlexDietAiDAL.Interfaces;
+using FlexDietAiDAL.Models;
+using FlexDietAiDAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,10 @@ ConfigurationManager configuration = builder.Configuration;
 
 // For Entity Framework.
 builder.Services.AddDbContext<FlexDietAiDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+// Dependecy Injection.
+builder.Services.AddTransient<IRepository<User>, RepositoryUser>();
+builder.Services.AddTransient<UserService, UserService>();
 
 var app = builder.Build();
 
