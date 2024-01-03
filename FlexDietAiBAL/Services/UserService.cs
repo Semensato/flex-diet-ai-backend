@@ -1,5 +1,6 @@
 ﻿using FlexDietAiDAL.Interfaces;
 using FlexDietAiDAL.Models;
+using FlexDietAiDAL.Repositories;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace FlexDietAiBAL.Services
 {
     public class UserService
     {
-        public readonly IRepository<User> _repository;
+        public readonly IUser _repository;
 
-        public UserService(IRepository<User> repository)
+        public UserService(IUser repository)
         {
             _repository = repository;
         }
@@ -90,6 +91,17 @@ namespace FlexDietAiBAL.Services
                 return await _repository.GetByIdAsync(Id);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<User?> GetUserByLoginAsync(string email, string password)
+        {
+            try
+            {
+                return await _repository.GetByLoginAsync(email, password);
+            }catch (Exception)
             {
                 throw;
             }
