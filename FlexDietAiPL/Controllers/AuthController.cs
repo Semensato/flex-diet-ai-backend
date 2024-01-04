@@ -44,5 +44,44 @@ namespace FlexDietAiPL.Controllers
                 return Unauthorized();
             }
         }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<ActionResult<string>> Register([FromBody] RegisterRequestDto registerRequest)
+        {
+            try
+            {
+                UserDto newUser = registerRequest.User;
+
+                var user = await _userService.AddUserAsync(new User { 
+                    Email = newUser.Email,
+                    BashPassword = newUser.BashPassword,
+                    CreationDate = DateTime.UtcNow,
+                    UserData = newUser.UserData is not null 
+                    ? new UserData
+                    {
+                        Name = newUser.UserData.Name,
+                        LastName = newUser.UserData.LastName,
+                        Dof = newUser.UserData.Dof,
+                        Somatotype = newUser.UserData.Somatotype,
+                    } : null
+                });
+
+                if(user is not null)
+                {
+                    var roles = new List<string> { "user" };
+                    var token = _jwtService.GenerateToken(user, roles);
+
+                    return Ok(new { Token = token });
+                }
+
+                return Unauthorized();
+
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Unauthorized();
+            }
+        }
     }
 }
