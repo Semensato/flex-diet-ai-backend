@@ -9,8 +9,11 @@ namespace FlexDietAiPL.DTOs
         public DateOnly Dof { get; set; }
         public string Somatotype { get; set; } = null!;
 
-        public static UserDataDto FromUserData(UserData userData)
+        public static UserDataDto? FromUserData(UserData? userData)
         {
+            if (userData is null)
+                return null;
+
             return new UserDataDto
             {
                 Name = userData.Name,
