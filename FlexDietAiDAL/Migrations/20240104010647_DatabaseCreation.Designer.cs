@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FlexDietAiDAL.Migrations
 {
     [DbContext(typeof(FlexDietAiDbContext))]
-    [Migration("20240103122031_OneUser")]
-    partial class OneUser
+    [Migration("20240104010647_DatabaseCreation")]
+    partial class DatabaseCreation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,22 +80,9 @@ namespace FlexDietAiDAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserDataId")
-                        .HasColumnType("integer");
-
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("843034a8-ffca-443e-a7bf-75d126e5ddb4"),
-                            BashPassword = "nmjkdwmd1023012",
-                            CreationDate = new DateTime(2024, 1, 3, 12, 20, 31, 185, DateTimeKind.Utc).AddTicks(885),
-                            Email = "teste@gmailcom",
-                            UserDataId = 0
-                        });
                 });
 
             modelBuilder.Entity("FlexDietAiDAL.Models.UserData", b =>
