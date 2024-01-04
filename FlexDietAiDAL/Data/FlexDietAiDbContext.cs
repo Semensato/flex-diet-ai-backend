@@ -26,16 +26,6 @@ namespace FlexDietAiDAL.Data
         {
             ConfigureRelationShips(modelBuilder);
 
-            modelBuilder.Entity<User>()
-                .HasData(
-                    new User { 
-                        UserId = Guid.NewGuid(),
-                        Email = "teste@gmailcom",
-                        BashPassword = "nmjkdwmd1023012",
-                        CreationDate = DateTime.UtcNow 
-                    }
-                    );
-
             base.OnModelCreating(modelBuilder);
         }
 

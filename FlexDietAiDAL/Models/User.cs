@@ -19,7 +19,6 @@ namespace FlexDietAiDAL.Models
         public DateTime CreationDate { get; set; }
 
         // UserData FK.
-        public int UserDataId { get; set; }
         public UserData? UserData { get; set; }
 
         // UserHealth FK.
