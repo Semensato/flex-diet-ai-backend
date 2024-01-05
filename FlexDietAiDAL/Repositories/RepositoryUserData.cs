@@ -47,5 +47,10 @@ namespace FlexDietAiDAL.Repositories
             await _dbContext.SaveChangesAsync();
             return userData;
         }
+
+        public async Task<UserData?> GetByIdAsync(int Id)
+        {
+            return await _dbContext.UsersData.FindAsync(Id);
+        }
     }
 }

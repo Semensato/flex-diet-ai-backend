@@ -12,5 +12,6 @@ namespace FlexDietAiDAL.Interfaces
         public Task<UserData> CreateAsync(UserData _object);
         public Task<UserData> DeleteAsync(UserData _object);
         public Task<UserData> UpdateAsync(int Id, UserData _object);
+        public Task<UserData?> GetByIdAsync(int Id);
     }
 }
