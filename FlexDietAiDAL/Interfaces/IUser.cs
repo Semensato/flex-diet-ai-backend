@@ -11,9 +11,9 @@ namespace FlexDietAiDAL.Interfaces
     {
         public Task<User> CreateAsync(User _object);
         public Task<User> DeleteAsync(User _object);
-        public Task<User> UpdateAsync(int Id, User _object);
+        public Task<User> UpdateAsync(Guid Id, User _object);
         public Task<IEnumerable<User>> GetAllAsync();
-        public Task<User?> GetByIdAsync(int Id);
+        public Task<User?> GetByIdAsync(Guid Id);
         public Task<User?> GetByLoginAsync(string email, string password);
     }
 }

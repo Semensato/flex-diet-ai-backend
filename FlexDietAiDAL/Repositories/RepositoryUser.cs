@@ -36,7 +36,7 @@ namespace FlexDietAiDAL.Repositories
             return user;
         }
 
-        public async Task<User> UpdateAsync(int Id, User _object)
+        public async Task<User> UpdateAsync(Guid Id, User _object)
         {
             var user = await _dbContext.Users.FindAsync(Id);
 
@@ -53,9 +53,12 @@ namespace FlexDietAiDAL.Repositories
             return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<User?> GetByIdAsync(int Id)
+        public async Task<User?> GetByIdAsync(Guid Id)
         {
-            var user = await _dbContext.Users.FindAsync(Id);
+            //var user = await _dbContext.Users.FindAsync(Id);
+            var user = await _dbContext.Users
+                                .Include(u => u.UserData)
+                                .FirstOrDefaultAsync(u => u.UserId == Id);
             return user;
         }
 

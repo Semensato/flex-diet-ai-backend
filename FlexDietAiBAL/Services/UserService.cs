@@ -36,7 +36,7 @@ namespace FlexDietAiBAL.Services
             }
         }
 
-        public async Task<User?> DeleteUserAsync(int Id)
+        public async Task<User?> DeleteUserAsync(Guid Id)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace FlexDietAiBAL.Services
             }
         }
 
-        public async Task<User?> UpdateUserAsync(int Id, User newUser)
+        public async Task<User?> UpdateUserAsync(Guid Id, User newUser)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace FlexDietAiBAL.Services
             }
         }
 
-        public async Task<User?> GetUserByIdAsync(int Id)
+        public async Task<User?> GetUserByIdAsync(Guid Id)
         {
             try
             {
