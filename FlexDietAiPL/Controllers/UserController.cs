@@ -42,5 +42,20 @@ namespace FlexDietAiPL.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<User>> GetById(Guid Id)
+        {
+            try
+            {
+                var user = await _userService.GetUserByIdAsync(Id);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
