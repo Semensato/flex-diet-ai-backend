@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,9 @@ builder.Services.AddTransient<IUser, RepositoryUser>();
 builder.Services.AddTransient<UserService, UserService>();
 
 builder.Services.AddTransient<JWTService, JWTService>();
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+   x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
 
 // Configure JWT authentication.
 var jwtSettings = configuration.GetSection("JwtSettings");
